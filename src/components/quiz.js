@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Quiz extends Component {
-  
+
   state = {
     question: '',
       answers : {
@@ -13,7 +13,6 @@ class Quiz extends Component {
   }
 
   componentDidMount(){ 
-  console.log(this.props.tracks[0])
   this.setState({
     question: 'Qui interprète ce morceau ?',
       answers : {
@@ -26,10 +25,10 @@ class Quiz extends Component {
   }
 
   render(){
-    
     return(
       <div>
         <p>{this.state.question}</p>
+        {/* <p>{this.props.tracks[0].id}</p> */}
         <label>
           {/* <input>{this.props.}</input> */}
         </label>

@@ -9,6 +9,7 @@ class App extends React.Component {
 
   state = {
     tracks : "", 
+    randomMusic: []
   }
 
 componentDidMount(){
@@ -17,29 +18,37 @@ componentDidMount(){
   .then(result => {
     this.setState({
       tracks: result.tracks.data,
+    })
+  }).then(()=>{
+    this.randomMusic()
   })
-  })
+
+}
+
+randomMusic(){
+  const randomMusic = [];
+  const showRandom = [];
+  const randomNumbers = []
+  let show = false 
+
+  for (let i = 0; i < 3; i++) {
+    const randomNumber = Math.floor(Math.random() * this.state.tracks.length);
+    if (randomNumbers.indexOf(randomNumber) === -1) { 
+      randomNumbers.push(randomNumber);
+    }
+    randomMusic.push(this.state.tracks[randomNumbers[i]])
+    this.setState({randomMusic})
+  }
 }
 
   render(){
-    const randomMusic = [];
-    const showRandom = [];
-    const randomNumbers = []
-    for (let i = 0; i < 3; i++) {
-      const randomNumber = Math.floor(Math.random() * this.state.tracks.length);
-      if (randomNumbers.indexOf(randomNumber) === -1) { 
-        randomNumbers.push(randomNumber);
-      }
-      randomMusic.push(this.state.tracks[randomNumbers[i]]) ; 
-    }
-    console.log(randomMusic)
-  
     return (
       <div>
         <h1>Blindtest</h1>
-      <Quiz tracks={randomMusic}/> 
+        <p>{this.state.randomMusic.length  >= 3 ? this.state.randomMusic[0].title : ""}</p>
+      <Quiz tracks={this.state.srandomMusic}/> 
       </div>
-  ); 
+    ); 
   }
 }
 export default App;
