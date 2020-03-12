@@ -6,11 +6,17 @@ import './App.css';
 
 class App extends React.Component {
 
-  state = {
+  constructor(props) {
+    super(props)
+    this.state  = {
     tracks : "", 
     randomMusic: [],
-    response : ''
+    response : '',
+    thomas: false
   }
+  
+}
+  
 
 componentDidMount(){
   fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/playlist/53362031')
@@ -24,6 +30,13 @@ componentDidMount(){
     this.resMusic()
   })
 
+}
+
+thomas = (data) =>{
+  this.setState({
+    thomas: data
+  })
+    this.componentDidMount()
 }
 
 randomMusic(){
@@ -44,23 +57,22 @@ randomMusic(){
 
 resMusic(){
   const resMusic = Math.floor(Math.random() * 3);
-  console.log(resMusic);
   this.setState({
     response : this.state.randomMusic[resMusic],
   })
-  console.log(this.state.response)
 }
+
+
   
   render(){
     return (
       <div>
         <h1>Blindtest</h1>
-        <p> response {this.state.response ? this.state.response.artist.name : ""}</p>
         <audio
-       autoPlay
+        autoPlay
         src={this.state.response ? this.state.response.preview : ""}>
         </audio>
-      <Quiz tracks={this.state.randomMusic} response={this.state.response}/> 
+      <Quiz thomas={this.thomas} tracks={this.state.randomMusic} response={this.state.response}/> 
       </div>
     ); 
   }
