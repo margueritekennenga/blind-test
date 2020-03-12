@@ -1,5 +1,4 @@
 import React from 'react';
-// import Music from './components/randomMusics'
 import Quiz from './components/quiz'
 import logo from './logo.svg';
 import './App.css';
@@ -9,7 +8,8 @@ class App extends React.Component {
 
   state = {
     tracks : "", 
-    randomMusic: []
+    randomMusic: [],
+    response : ''
   }
 
 componentDidMount(){
@@ -21,6 +21,7 @@ componentDidMount(){
     })
   }).then(()=>{
     this.randomMusic()
+    this.resMusic()
   })
 
 }
@@ -41,12 +42,25 @@ randomMusic(){
   }
 }
 
+resMusic(){
+  const resMusic = Math.floor(Math.random() * 3);
+  console.log(resMusic);
+  this.setState({
+    response : this.state.randomMusic[resMusic],
+  })
+  console.log(this.state.response)
+}
+  
   render(){
     return (
       <div>
         <h1>Blindtest</h1>
-        <p>{this.state.randomMusic.length  >= 3 ? this.state.randomMusic[0].title : ""}</p>
-      <Quiz tracks={this.state.srandomMusic}/> 
+        <p> response {this.state.response ? this.state.response.artist.name : ""}</p>
+        <audio
+       autoPlay
+        src={this.state.response ? this.state.response.preview : ""}>
+        </audio>
+      <Quiz tracks={this.state.randomMusic} response={this.state.response}/> 
       </div>
     ); 
   }

@@ -9,29 +9,36 @@ class Quiz extends Component {
         2: '',
         3: '',
       },
-      correct : ''
+      correct : '',
   }
-
+  
+ 
   componentDidMount(){ 
-  this.setState({
-    question: 'Qui interprète ce morceau ?',
-      answers : {
-        a: 'moi',
-        b: 'toi',
-        c: 'lui',
-      },
-      correct : 'c'
-  });
-  }
+      this.setState({question: 'Qui interprète ce morceau ?'})
+      setTimeout(() => {
+        this.setState({
+          answers : {
+            1: this.props.tracks[0].artist.name,
+            2: this.props.tracks[1].artist.name,
+            3: this.props.tracks[2].artist.name,
+          },
+          correct : this.props.response.artist.name,
+        })
+       }, 3000);
+  } 
 
   render(){
+    
+    const allAnswers = Object
+    .keys(this.state.answers)
+    .map(key => <h4>{this.state.answers[key]}</h4>)
+
     return(
       <div>
         <p>{this.state.question}</p>
-        {/* <p>{this.props.tracks[0].id}</p> */}
-        <label>
-          {/* <input>{this.props.}</input> */}
-        </label>
+        <div>
+          {allAnswers}
+        </div>
       </div>
     )
   }
