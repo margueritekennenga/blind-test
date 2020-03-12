@@ -69,7 +69,7 @@ resMusic(){
       <div>
         <h1>Blindtest</h1>
         <audio
-        autoPlay
+        autoPlay controls
         src={this.state.response ? this.state.response.preview : ""}>
         </audio>
       <Quiz thomas={this.thomas} tracks={this.state.randomMusic} response={this.state.response}/> 
