@@ -2,6 +2,7 @@ import React from 'react';
 import Quiz from './components/quiz'
 import logo from './logo.svg';
 import './App.css';
+import Themes from './components/theme';
 
 
 class App extends React.Component {
@@ -12,29 +13,37 @@ class App extends React.Component {
     tracks : "", 
     randomMusic: [],
     response : '',
-    thomas: false
-  }
-  
+    updateMusic: false,
+    url : '',
+    start : false,
+  } 
 }
-  
 
-componentDidMount(){
-  fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/playlist/53362031')
-  .then(res => res.json())
-  .then(result => {
-    this.setState({
-      tracks: result.tracks.data,
+getUrl = (data) =>{
+  this.setState({url:data});
+} 
+
+start = (data) =>{
+  this.setState({start:data});
+  this.componentDidMount()
+} 
+  
+componentDidMount(){ 
+    fetch(this.state.url)
+    .then(res => res.json())
+    .then(result => {
+      this.setState({
+        tracks: result.tracks.data,
+      })
+    }).then(()=>{
+      this.randomMusic()
+      this.resMusic()
     })
-  }).then(()=>{
-    this.randomMusic()
-    this.resMusic()
-  })
+ }
 
-}
-
-thomas = (data) =>{
+updateMusic = (data) =>{
   this.setState({
-    thomas: data
+    updateMusic: data
   })
     this.componentDidMount()
 }
@@ -62,17 +71,16 @@ resMusic(){
   })
 }
 
-
-  
   render(){
     return (
       <div>
+        <Themes getUrl={this.getUrl} start={this.start} /> 
         <h1>Blindtest</h1>
         <audio
-        autoPlay controls
+        autoPlay
         src={this.state.response ? this.state.response.preview : ""}>
         </audio>
-      <Quiz thomas={this.thomas} tracks={this.state.randomMusic} response={this.state.response}/> 
+      {/* <Quiz updateMusic={this.updateMusic} tracks={this.state.randomMusic} response={this.state.response}/>  */}
       </div>
     ); 
   }

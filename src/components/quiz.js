@@ -6,6 +6,7 @@ class Quiz extends Component {
   constructor(props) {
     super(props)
     this.state = {
+    data : {},
     question: '',
       answers : {
         1: '',
@@ -20,20 +21,18 @@ class Quiz extends Component {
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
- 
-  componentDidMount(){ 
-      this.setState({question: 'Qui interprète ce morceau ?'})
-      setTimeout(() => {
-        this.setState({
-          answers : {
-            1: this.props.tracks[0].artist.name,
-            2: this.props.tracks[1].artist.name,
-            3: this.props.tracks[2].artist.name,
-          },
-          correct : this.props.response.artist.name,
-        })
-       }, 10000);
+
+  componentDidMount() {
+    this.setState({
+        question: 'Qui interprète ce morceau ?'})
+      this.setState({
+        answers : {
+          1: this.props.tracks[0].artist.name,
+          2: this.props.tracks[1].artist.name,
+          3: this.props.tracks[2].artist.name,
+      },
+      correct : this.props.response.artist.name
+      })
   } 
 
   handleChange(event) {
@@ -55,9 +54,8 @@ class Quiz extends Component {
       } 
     }
     if (this.state.try < 2) {
-      event.preventDefault();
-      
-      this.props.thomas(true)
+      event.preventDefault();   
+    this.props.updateMusic(true)
     this.setState({
       answers : {
         1: '',
@@ -71,12 +69,14 @@ class Quiz extends Component {
     }
 
   render(){
-    allAnswers = Object
+
+    if (this.props.tracks.length === 0) {
+      return null
+    }else{
+      allAnswers = Object
     .keys(this.state.answers)
     .map(key => <div><label>{this.state.answers[key]}</label><input type="radio" onChange={this.handleChange} value={this.state.answers[key]} name='question' ></input></div>)
-
     let points = this.state.point
-    console.log(this.state.try)
     return(
       <div>
         <p>{this.state.question}</p>
@@ -87,6 +87,7 @@ class Quiz extends Component {
         </div>
       </div>
     )
+    } 
   }
 }
 
