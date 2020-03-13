@@ -1,41 +1,13 @@
-/* .App {
-  text-align: center;
-}
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-Regular.ttf");
+ }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+ @font-face {
+  font-family: "Airfool";
+  src: url("./fonts/Airfool.otf");
+ }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -58,16 +30,154 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+html{
+  font-family: 'Poppins';
+}
+
+h1{
+  font-family: 'Airfool';
+  margin-top: 50px;
+  font-size: 7em;
+  text-align: center;
+}
+
+.point{
+  margin: auto;
+  text-align: center;
+  vertical-align: center;
+  background-color: black;
+  color: white;
+  font-size: 2em;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.quizz{
+  background-color: #FAC240;
+  border-radius: 20px;
+  padding: 50px;
+  width: 60%;
+  margin: 50px auto 50px auto;
+}
+
+.quizz h2{
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+.quizz button {
+  background-color: black; /* Green */
+  border-radius: 30px;
+  border: none;
+  color: white;
+  margin-top: 10px;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.quizz label {
+  height: 60px;
+  width: 180px;
+  /* border-radius: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:black;
+  background-color: white;
+  box-shadow: 3px 3px 20px -9px rgba(0,0,0,0.75);
+  margin: 10px 10px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.quizz label:hover {
+  transition: all .3s;
+  opacity: .8;
+}
+
+.quizz input[type=radio] {
+  position: absolute;
+  top: -300px;
+}
+
+.answer{
+  display: flex;
+}
+
+
 .themes{
   position: absolute;
   width: 100%;
   height: 100vh;
-  background-color: azure;
+  background-color: #FAC240;
 }
 
 .themes-form{
+  text-align: center;
   position: absolute;
   top: 50%; 
   left: 50%; 
   transform: translate(-50%, -50%); 
+}
+
+.themes-form h2{
+  font-size: 2.5em;
+}
+
+
+.allCorrectAnswers{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:  wrap;
+  justify-content: center;
+  margin :auto ;
+  width: 90%;
+  text-align: center;
+}
+
+.allCorrectAnswers img{
+  border-radius:50%;
+  width: 30%;
+}
+
+.allCorrectAnswers h2{
+  font-size: 1.5em;
+}
+
+correctAnswerInfos{
+  text-align: left;
+}
+
+.correctAnswer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+
+.themes-form select{
+  width: 100%;
+  height: 40px;
+  font-size: 1.5em;
+  border : none;
+  background-color: black;
+  color: white;
+}
+
+.themes-form input {
+  background-color: white; /* Green */
+  border-radius: 30px;
+  border: none;
+  margin-top: 10px;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
